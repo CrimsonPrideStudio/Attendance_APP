@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Attendance_APP</string>
+    <string-array name="semesters">
+        <item>1st CSE</item>
+        <item>2nd CSE</item>
+        <item>3rd CSE</item>
+        <item>4th CSE</item>
+        <item>5th CSE</item>
+        <item>6th CSE</item>
+        <item>7th CSE</item>
+        <item>8th CSE</item>
+    </string-array>
 </resources>
