@@ -16,11 +16,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.type.DateTime
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
-
+@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity()  {
     private lateinit var currLocation:String;
     private lateinit var locationCallback: LocationCallback
@@ -34,26 +35,58 @@ class MainActivity : AppCompatActivity()  {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         checkPermission()
         //addClassData()
-        getCurrentLocation()
+       // sendStudentAttendance();
+       // getCurrentLocation()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private  fun sendStudentAttendance(){
+    val ref = FirebaseDatabase.getInstance().getReference("4 CSE Portal")
+        val refTeacherData = FirebaseDatabase.getInstance().getReference("4 CSE")
+    val refOfAtte = FirebaseDatabase.getInstance().getReference("4 CSE ATTENDANCE")
+        val student = StudentAttendance()
+        student.name = "Priyanshu m"
+    ref.get().addOnSuccessListener {
+        if(it.exists()){
+            val name = it.children.forEach {
+                val subject = it.key;
+                val portalOpen = it.value
+                if(portalOpen == true){
+                    refTeacherData.child(subject.toString()).get().addOnSuccessListener {
+                        val location = it.child("location").value
+                        val startPoint = location.toString().split(":")
+                        val locate = Location("Location");
+                        locate.latitude = startPoint[0].toDouble();
+                        locate.longitude = startPoint[1].toDouble();
+                        if(distanceCalculate(locate,locate)<=50){
+                            refOfAtte.child(subject.toString()).child("29 Dec 20222").child(student.name).setValue(student)
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    }
+
     private  fun sendTeacherData(){
 
         val teacherData:TeacherData = TeacherData()
+        teacherData.isOpen  = true;
         teacherData.collegeYear = 4;
         teacherData.stream = "CSE";
-        teacherData.subject = "python";
+        teacherData.subject = "QSA";
         teacherData.time = getCurrentTime();
         teacherData.location = currLocation;
         val ref = FirebaseDatabase.getInstance().getReference(teacherData.collegeYear.toString()+" "+teacherData.stream)
+        val refOfPortal = FirebaseDatabase.getInstance().getReference(teacherData.collegeYear.toString()+" "+teacherData.stream +" Portal")
         val classId = ref.push().key
+        refOfPortal.child(teacherData.subject).setValue(true)
         ref.child(teacherData.subject).setValue(teacherData).addOnCompleteListener {
            // Toast.makeText(this,"ADDED SUCCESSFULLY",Toast.LENGTH_LONG).show()
         }
 
     }
-    @RequiresApi(Build.VERSION_CODES.O)
+
     private  fun getCurrentTime():String{
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
@@ -94,8 +127,6 @@ class MainActivity : AppCompatActivity()  {
         }
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentLocation() {
         val locationManager: LocationManager =
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -133,7 +164,15 @@ class MainActivity : AppCompatActivity()  {
         }
     }
 
-
+    private fun distanceCalculate(locationA: Location,locationB: Location):Int{
+        val startPoint = Location("Start")
+        startPoint.latitude = locationA.latitude
+        startPoint.longitude = locationA.longitude
+        val endPoint = Location("Start")
+        endPoint.latitude = locationB.latitude
+        endPoint.longitude = locationB.longitude
+        return startPoint.distanceTo(endPoint).toInt()
+    }
 
 
 }
