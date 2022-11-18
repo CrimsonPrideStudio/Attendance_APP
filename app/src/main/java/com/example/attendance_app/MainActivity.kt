@@ -14,7 +14,13 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.attendance_app.Adaptar.HomeClassAdaptar
 import com.google.android.gms.location.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.type.DateTime
@@ -27,18 +33,50 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var locationCallback: LocationCallback
     lateinit var fusedLocationClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
-
+    lateinit var recyclerView: RecyclerView
+    lateinit var layoutManager: LayoutManager
+    lateinit var recyclerAdapatar:HomeClassAdaptar
+    lateinit var classesList:ArrayList<SemesterClasses>
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.home_page)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         checkPermission()
-        //addClassData()
+        recyclerView = findViewById(R.id.recycleViewHome)
+        layoutManager = LinearLayoutManager(this)
+        classesList = arrayListOf()
+        recyclerView.layoutManager = layoutManager
+
+        addClassData()
+        getAllClasses()
        // sendStudentAttendance();
        // getCurrentLocation()
     }
 
+    private  fun getAllClasses(){
+        val ref = FirebaseDatabase.getInstance().getReference("4 CSE")
+
+        ref.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(classSnapShot in snapshot.children){
+                        val user = classSnapShot.getValue(SemesterClasses::class.java)
+                        if (user != null) {
+                            classesList.add(user)
+                        }
+                    }
+                    recyclerView.adapter = HomeClassAdaptar(applicationContext,classesList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
     private  fun sendStudentAttendance(){
     val ref = FirebaseDatabase.getInstance().getReference("4 CSE Portal")
         val refTeacherData = FirebaseDatabase.getInstance().getReference("4 CSE")
@@ -69,7 +107,6 @@ class MainActivity : AppCompatActivity()  {
     }
 
     private  fun sendTeacherData(){
-
         val teacherData:TeacherData = TeacherData()
         teacherData.isOpen  = true;
         teacherData.collegeYear = 4;
@@ -97,7 +134,7 @@ class MainActivity : AppCompatActivity()  {
     private fun addClassData(){
         val classDetails = AddClassButton();
         classDetails.collegeYear = 4;
-        classDetails.subject = "python"
+        classDetails.subject = "Compiler Design"
         classDetails.teacherName="Khusboo MAm"
         classDetails.stream = "CSE"
         classDetails.totalStudent = "166";
@@ -173,7 +210,6 @@ class MainActivity : AppCompatActivity()  {
         endPoint.longitude = locationB.longitude
         return startPoint.distanceTo(endPoint).toInt()
     }
-
 
 }
 
