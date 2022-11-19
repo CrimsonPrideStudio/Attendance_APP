@@ -1,4 +1,4 @@
-package com.example.attendance_app
+package com.example.attendance_app.DataClass
 
 data class SemesterClasses(
     val collegeYear:Int?=4,

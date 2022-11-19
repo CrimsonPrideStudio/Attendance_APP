@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.attendance_app.R
-import com.example.attendance_app.SemesterClasses
+import com.example.attendance_app.DataClass.SemesterClasses
 
 class HomeClassAdaptar(val context: Context,val classList:ArrayList<SemesterClasses>):RecyclerView.Adapter<HomeClassAdaptar.ClassViewHolder>() {
     class ClassViewHolder(view: View):RecyclerView.ViewHolder(view){

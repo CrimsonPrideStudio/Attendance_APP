@@ -1,4 +1,4 @@
-package com.example.attendance_app
+package com.example.attendance_app.DataClass
 
 class TeacherData {
     var isOpen:Boolean = false;
