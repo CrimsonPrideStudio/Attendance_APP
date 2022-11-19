@@ -31,12 +31,12 @@
         android:padding="30dp"
         >
 
-
         <TextView
             android:id="@+id/subjectName"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subject Name"
+            android:text="Subject Name:"
             android:textColor="@color/design_default_color_on_secondary"
             android:textSize="20sp" />
 
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:background="@drawable/rectangularborder"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
             android:layout_marginBottom="20dp"
             android:ems="13"
             android:hint="   Subject Name"
@@ -56,9 +56,10 @@
 
         <TextView
             android:id="@+id/teacherName"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Teacher Name"
+            android:text="Teacher Name:"
             android:textColor="@color/design_default_color_on_secondary"
             android:textSize="20sp" />
 
@@ -69,13 +70,14 @@
             android:background="@drawable/rectangularborder"
             android:ems="13"
             android:inputType="textPersonName"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:hint="  Teacher Name" />
 
         <TextView
             android:id="@+id/year"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:textColor="@color/design_default_color_on_secondary"
             android:layout_height="wrap_content"
@@ -85,7 +87,7 @@
         <Spinner
             android:id="@+id/yearSpinner"
             android:layout_width="200dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:layout_height="40dp"
@@ -93,6 +95,7 @@
 
         <TextView
             android:id="@+id/stream"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stream:"
@@ -102,20 +105,19 @@
         <Spinner
             android:id="@+id/streamSpinner"
             android:layout_weight="1"
-
             android:layout_width="200dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
             android:layout_marginBottom="20dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:autofillHints="Stream"/>
 
         <TextView
             android:id="@+id/totalStudents"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No. Of Students:"
-            android:layout_weight="1"
             android:textColor="@color/design_default_color_on_secondary"
+            android:layout_height="wrap_content"
+            android:text="No. of Students:"
             android:textSize="20sp" />
 
         <EditText
@@ -126,8 +128,7 @@
             android:layout_weight="1"
             android:ems="13"
             android:inputType="textPersonName"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="3dp"
             android:hint="  Name" />
 
 
