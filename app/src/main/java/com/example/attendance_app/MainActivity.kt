@@ -10,7 +10,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +38,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    AdapterView.OnItemSelectedListener {
     private lateinit var currLocation: String;
     private lateinit var locationCallback: LocationCallback
     lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -46,6 +54,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var dialog: AlertDialog;
     lateinit var dialogBuilder: AlertDialog.Builder;
 
+    //FORM FLOATING ACTION BUTTON
+    lateinit var streamSpinners: Spinner
+    lateinit var yearSpinners: Spinner
+    lateinit var subjectNameForm:EditText
+    lateinit var teacherNameForm:EditText
+    lateinit var totalStudentForm:EditText
+    lateinit var createButtonForm:Button
+    lateinit var cancelButtonForm:Button
     @SuppressLint("InflateParams")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,17 +75,53 @@ class MainActivity : AppCompatActivity() {
         classesList = arrayListOf()
         recyclerView.layoutManager = layoutManager
         addClassFlaotingBtn = findViewById(R.id.addClassFloatingButton)
-        addClassData()
-        getAllClasses()
+        val contactPopupView:View = layoutInflater.inflate(R.layout.form, null)
+        initializeForm(contactPopupView)
+
+
         addClassFlaotingBtn.setOnClickListener {
             dialogBuilder = AlertDialog.Builder(this)
-            val contactPopupView = layoutInflater.inflate(R.layout.form, null)
+            initializeForm(contactPopupView)
             dialogBuilder.setView(contactPopupView)
             dialog = dialogBuilder.create()
             dialog.show()
         }
+        getAllClasses()
+        createButtonForm.setOnClickListener {
+            addClassData()
+        }
         // sendStudentAttendance();
         // getCurrentLocation()
+    }
+
+    private fun initializeSpinners() {
+        val streamAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            this,
+            R.array.streams,
+            android.R.layout.simple_spinner_item
+        )
+        val yearAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            this,
+            R.array.years,
+            android.R.layout.simple_spinner_item
+        )
+        streamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        yearSpinners.adapter = yearAdapter
+        yearSpinners.onItemSelectedListener = this
+        streamSpinners.adapter = streamAdapter
+        streamSpinners.onItemSelectedListener = this
+
+    }
+
+    private fun initializeForm(context:View){
+        subjectNameForm = context.findViewById(R.id.subjectNameInput)
+         teacherNameForm= context.findViewById(R.id.teacherNameInput)
+        yearSpinners = context.findViewById(R.id.yearSpinner)
+        streamSpinners = context.findViewById(R.id.streamSpinner)
+        totalStudentForm = context.findViewById(R.id.totalStudentsInput)
+        createButtonForm = context.findViewById(R.id.createBtn)
+        cancelButtonForm = context.findViewById(R.id.cancelBtn)
+        initializeSpinners()
     }
 
     private fun getAllClasses() {
@@ -155,18 +207,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun addClassData() {
         val classDetails = AddClassButton();
-        classDetails.collegeYear = 4;
-        classDetails.subject = "Compiler Design"
-        classDetails.teacherName = "Khusboo MAm"
-        classDetails.stream = "CSE"
-        classDetails.totalStudent = "166";
-
+        classDetails.collegeYear = (yearSpinners.selectedItem.toString()[0].code) - '0'.code;
+        classDetails.subject = subjectNameForm.text.toString()
+        classDetails.teacherName = teacherNameForm.text.toString()
+        classDetails.stream = streamSpinners.selectedItem.toString()
+        classDetails.totalStudent = totalStudentForm.text.toString();
         val ref = FirebaseDatabase.getInstance()
             .getReference(classDetails.collegeYear.toString() + " " + classDetails.stream)
         val classId = ref.push().key
         classDetails.classID = classId.toString();
         ref.child(classDetails.subject).setValue(classDetails).addOnCompleteListener {
-            Toast.makeText(this, "ADDED SUCCESSFULLY", Toast.LENGTH_LONG).show()
+            classesList = arrayListOf()
+            getAllClasses()
         }
     }
 
@@ -243,6 +295,14 @@ class MainActivity : AppCompatActivity() {
         endPoint.latitude = locationB.latitude
         endPoint.longitude = locationB.longitude
         return startPoint.distanceTo(endPoint).toInt()
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        Toast.makeText(this, "AS", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 
 }
