@@ -12,11 +12,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 class formpage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
-    var semesters = arrayOf<String?>("C", "Data structures",
-        "Interview prep", "Algorithms",
-        "DSA with java", "OS")
+    var semesters = arrayOf<String?>("Computer Science Engineering", "Civil Enginerering",
+        "Bio-Tech", "Information Technology")
 
-    val years= arrayOf<String?>("2019","2020","2021","2022")
+    val years= arrayOf<String?>("1st","2nd","3rd","4th")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

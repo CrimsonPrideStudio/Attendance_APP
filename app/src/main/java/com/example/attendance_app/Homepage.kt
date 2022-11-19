@@ -18,20 +18,12 @@ class Homepage : AppCompatActivity() {
 
         toggle=ActionBarDrawerToggle(this,drawerToggle,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
 
-        // pass the Open and Close toggle for the drawer layout listener
-        // to toggle the button
         drawerToggle.addDrawerListener(toggle)
         toggle.syncState()
 
-        // to make the Navigation drawer icon always appear on the action bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    // override the onOptionsItemSelected()
-    // function to implement
-    // the item click listener callback
-    // to open and close the navigation
-    // drawer when the icon is clicked
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (toggle.onOptionsItemSelected(item)) {
             true
