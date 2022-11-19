@@ -13,6 +13,7 @@
         android:layout_weight="1"/>
 
     <LinearLayout
+        android:id="@+id/borderLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -22,6 +23,7 @@
         android:background="@drawable/rectangularborder">
 
     <LinearLayout
+        android:id="@+id/inputFormLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -61,7 +63,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/teacherNameInput"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:background="@drawable/rectangularborder"
@@ -117,7 +119,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/totalStudentsInput"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:background="@drawable/rectangularborder"
@@ -132,6 +134,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/btnLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -144,7 +147,7 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/createBtn"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -155,7 +158,7 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/cancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
