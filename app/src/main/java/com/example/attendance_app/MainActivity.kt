@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -80,11 +83,12 @@ class MainActivity : AppCompatActivity(),
 
 
         addClassFlaotingBtn.setOnClickListener {
-            dialogBuilder = AlertDialog.Builder(this)
+            dialogBuilder = AlertDialog.Builder(this,R.style.customAlert)
             initializeForm(contactPopupView)
             dialogBuilder.setView(contactPopupView)
             dialog = dialogBuilder.create()
             dialog.show()
+
         }
         getAllClasses()
         createButtonForm.setOnClickListener {
@@ -106,6 +110,7 @@ class MainActivity : AppCompatActivity(),
             android.R.layout.simple_spinner_item
         )
         streamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         yearSpinners.adapter = yearAdapter
         yearSpinners.onItemSelectedListener = this
         streamSpinners.adapter = streamAdapter
