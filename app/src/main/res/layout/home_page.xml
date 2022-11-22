@@ -21,13 +21,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
+        android:padding="10dp"
+       >
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30px"
+
         android:orientation="horizontal">
 
         <ImageView
@@ -35,6 +36,7 @@
             android:id="@+id/hamburger"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             app:tint="@color/white" />
 
         <Space
@@ -46,6 +48,7 @@
             android:id="@+id/dropdown_menu"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:backgroundTint="@color/white"
             android:layout_alignParentEnd="true"
             android:dropDownWidth="wrap_content"
             android:gravity="center" />
@@ -53,32 +56,25 @@
 
 
 
-        <LinearLayout
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addClassFloatingButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/circle"
+            android:src="@drawable/add"
             android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/add"/>
-
-        </LinearLayout>
+            android:backgroundTint="@color/white"
+            app:tint="@color/Radical_Red"
+            app:maxImageSize="40dp"
+            android:scaleType="centerCrop"
+            android:layout_margin="10dp"
+            android:contentDescription="TODO" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/linearLayout"
-            android:layout_marginTop="26dp" />
+             />
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

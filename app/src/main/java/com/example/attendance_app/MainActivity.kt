@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(),
     lateinit var recyclerAdapatar: HomeClassAdaptar
     lateinit var classesList: ArrayList<SemesterClasses>
 
-    lateinit var addClassFlaotingBtn: LinearLayout
+    lateinit var addClassFlaotingBtn: FloatingActionButton
 
     lateinit var dialog: AlertDialog;
     lateinit var dialogBuilder: AlertDialog.Builder;
