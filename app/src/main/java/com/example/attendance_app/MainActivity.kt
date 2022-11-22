@@ -12,6 +12,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
@@ -25,6 +26,8 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -35,6 +38,7 @@ import com.example.attendance_app.DataClass.StudentAttendance
 import com.example.attendance_app.DataClass.TeacherData
 import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -54,8 +58,11 @@ class MainActivity : AppCompatActivity(),
     lateinit var recyclerAdapatar: HomeClassAdaptar
     lateinit var classesList: ArrayList<SemesterClasses>
 
-    lateinit var addClassFlaotingBtn: LinearLayout
 
+    lateinit var streanHome: Spinner
+    lateinit var yearHome: Spinner
+
+    lateinit var addClassFlaotingBtn: FloatingActionButton
     lateinit var dialog: AlertDialog;
     lateinit var dialogBuilder: AlertDialog.Builder;
 
@@ -72,6 +79,10 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_page)
+
+        val yearHome=findViewById<Spinner>(R.id.yearHome)
+        val streanHome=findViewById<Spinner>(R.id.streamHome)
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         checkPermission()

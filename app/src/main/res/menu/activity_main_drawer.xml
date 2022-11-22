@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        >
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/dashboard_icon"
             android:title="Dashboard" />
         <item
             android:id="@+id/nav_setting"
+            android:iconTint="@color/Radical_Red"
             android:icon="@drawable/setting_icon"
             android:title="Setting" />
         <item
             android:id="@+id/nav_about"
+            android:iconTint="@color/Radical_Red"
             android:icon="@drawable/about_icon"
             android:title="About" />
     </group>
-    <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/logout_icon"
-            android:title="Logout" />
-    </group>
 </menu>

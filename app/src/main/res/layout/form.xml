@@ -137,7 +137,7 @@
                     android:background="@drawable/rectangularborder"
                     android:ems="13"
                     android:hint="No of Student"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:padding="10dp" />
 
             </LinearLayout>
