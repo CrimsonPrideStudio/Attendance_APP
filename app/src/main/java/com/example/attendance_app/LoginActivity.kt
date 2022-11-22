@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var password: EditText
     lateinit var email: EditText
-    lateinit var signupBtn: Button
+    lateinit var loginBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
         password=findViewById(R.id.passwordLogin)
         email=findViewById(R.id.emailLogin)
-        signupBtn=findViewById(R.id.loginBtn)
+        loginBtn=findViewById(R.id.loginBtn)
 
     }
 }

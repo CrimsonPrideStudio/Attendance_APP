@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="6"
+        android:background="@color/gray"
         android:padding="20dp"
 >
     <Space
@@ -21,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+
             android:layout_weight="2">
 
             <LinearLayout
@@ -36,8 +38,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subject Name:"
-                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
+
                     android:textStyle="bold" />
 
                 <EditText
@@ -53,14 +56,14 @@
                     android:hint="Subject Name"
                     android:inputType="textPersonName"
                     android:padding="10sp"
-                    android:textColor="@color/design_default_color_on_secondary" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/teacherName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Teacher Name:"
-                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -82,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Year:"
-                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -92,6 +95,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/Radical_Red"
                     android:layout_weight="1"
                     android:autofillHints="Year" />
 
@@ -100,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Stream:"
-                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -110,6 +114,7 @@
                     android:layout_height="50sp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/Radical_Red"
                     android:layout_weight="1"
                     android:autofillHints="Stream" />
 
@@ -118,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No. of Students:"
-                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -162,6 +167,8 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/Radical_Red"
+            android:textColor="@color/white"
             android:text="Create"/>
         <Space
             android:layout_width="wrap_content"
@@ -172,7 +179,9 @@
             android:id="@+id/cancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:backgroundTint="@color/Radical_Red"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="Cancel" />
         <Space
             android:layout_width="wrap_content"
