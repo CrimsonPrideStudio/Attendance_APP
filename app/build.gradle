@@ -1,3 +1,5 @@
+
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -37,6 +39,9 @@ android {
     }
 }
 
+
+
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -55,4 +60,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    implementation 'com.github.chetankoli1.BottomNavigation:chetanbottomnavigation:0.0.3'
 }

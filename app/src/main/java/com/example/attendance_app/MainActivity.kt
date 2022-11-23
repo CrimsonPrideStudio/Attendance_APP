@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity(),
     lateinit var recyclerAdapatar: HomeClassAdaptar
     lateinit var classesList: ArrayList<SemesterClasses>
 
+    lateinit var navBottom: NavigationView
+
 
     lateinit var streanHome: Spinner
     lateinit var yearHome: Spinner
@@ -79,6 +81,8 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_page)
+
+
 
         val yearHome=findViewById<Spinner>(R.id.yearHome)
         val streanHome=findViewById<Spinner>(R.id.streamHome)
