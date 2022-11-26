@@ -85,18 +85,19 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
         val contactPopupView:View = layoutInflater.inflate(R.layout.form, null)
         initializeForm(contactPopupView)
 
-        Toast.makeText(requireContext(),"ren",Toast.LENGTH_SHORT).show()
+        dialogBuilder = AlertDialog.Builder(requireContext(),R.style.customAlert)
+        initializeForm(contactPopupView)
+        dialogBuilder.setView(contactPopupView)
+        dialog = dialogBuilder.create()
         addClassFlaotingBtn.setOnClickListener {
-            dialogBuilder = AlertDialog.Builder(requireContext(),R.style.customAlert)
-            initializeForm(contactPopupView)
-            dialogBuilder.setView(contactPopupView)
-            dialog = dialogBuilder.create()
             dialog.show()
-
         }
         getAllClasses()
         createButtonForm.setOnClickListener {
             addClassData()
+        }
+        cancelButtonForm.setOnClickListener {
+            dialog.hide()
         }
         return binding
     }
