@@ -16,20 +16,16 @@ import android.widget.Toast
 import com.example.attendance_app.databinding.ActivityLoginBinding
 
 import com.example.attendance_app.R
+import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var password: EditText
-    lateinit var email: EditText
+    lateinit var RollNumber: TextInputEditText
     lateinit var loginBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        password=findViewById(R.id.passwordLogin)
-        email=findViewById(R.id.emailLogin)
-        loginBtn=findViewById(R.id.loginBtn)
+        setContentView(R.layout.activity_login)
 
     }
 }

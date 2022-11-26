@@ -15,16 +15,8 @@ class Dashboard : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        return inflater.inflate(R.layout.home_page, container, false)
     }
 
-    companion object {
 
-        fun newInstance(param1: String, param2: String) =
-            Dashboard().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

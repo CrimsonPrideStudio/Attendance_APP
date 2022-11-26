@@ -3,6 +3,7 @@ package com.example.attendance_app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.attendance_app.R
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation
 
@@ -23,14 +24,19 @@ class Test : AppCompatActivity() {
 
         navBar.setOnShowListener(object :chetanBottomNavigation.ShowListener {
             override fun onShowItem(item: chetanBottomNavigation.Model?) {
-                Toast.makeText(applicationContext,"show",Toast.LENGTH_SHORT).show()
+
+                when(item?.id){
+                    1-> changeFragment(Profile())
+                    2-> changeFragment(Dashboard())
+                    3-> changeFragment(Setting())
+                }
+
             }
 
         })
 
         navBar.setOnClickMenuListener(object :chetanBottomNavigation.ClickListener {
             override fun onClickItem(item: chetanBottomNavigation.Model?) {
-                Toast.makeText(applicationContext,"onclick",Toast.LENGTH_SHORT).show()
 
             }
 
@@ -38,7 +44,6 @@ class Test : AppCompatActivity() {
 
         navBar.setOnReselectListener(object :chetanBottomNavigation.ReselectListener {
             override fun onReselectItem(item: chetanBottomNavigation.Model?) {
-                Toast.makeText(applicationContext,"reselect",Toast.LENGTH_SHORT).show()
 
             }
 
@@ -47,4 +52,12 @@ class Test : AppCompatActivity() {
     navBar.show(2,true)
 
     }
+
+    private fun changeFragment(fragment: Fragment){
+        val fragManager=supportFragmentManager
+        val fragTransaction=fragManager.beginTransaction()
+        fragTransaction.replace(R.id.fragContainer,fragment)
+        fragTransaction.commit()
+    }
 }
+

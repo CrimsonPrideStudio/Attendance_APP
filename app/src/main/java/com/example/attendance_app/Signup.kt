@@ -14,21 +14,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.attendance_app.databinding.ActivitySignupBinding
+import com.google.android.material.textfield.TextInputEditText
 
 class Signup : AppCompatActivity() {
 
-     lateinit var username: EditText
-     lateinit var password: EditText
-     lateinit var email: EditText
+     lateinit var username: TextInputEditText
+     lateinit var RollNumber: TextInputEditText
+     lateinit var Number: TextInputEditText
      lateinit var signupBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        username=findViewById(R.id.usernameSignup)
-        password=findViewById(R.id.passwordSignup)
-        email=findViewById(R.id.emailSignup)
-        signupBtn=findViewById(R.id.signupBtn)
+setContentView(R.layout.activity_signup)
 
 
     }
