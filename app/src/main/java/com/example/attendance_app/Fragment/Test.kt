@@ -22,34 +22,23 @@ class Test : AppCompatActivity() {
 
         navBar.setCount(4,"10")
 
-        navBar.setOnShowListener(object :chetanBottomNavigation.ShowListener {
-            override fun onShowItem(item: chetanBottomNavigation.Model?) {
-
-                when(item?.id){
-                    1-> changeFragment(Profile())
-                    2-> changeFragment(Dashboard())
-                    3-> changeFragment(Setting())
-                }
-
+        navBar.setOnShowListener { item ->
+            when (item?.id) {
+                1 -> changeFragment(Profile())
+                2 -> changeFragment(Dashboard())
+                3 -> changeFragment(Setting())
             }
+        }
 
-        })
+        navBar.setOnClickMenuListener {
 
-        navBar.setOnClickMenuListener(object :chetanBottomNavigation.ClickListener {
-            override fun onClickItem(item: chetanBottomNavigation.Model?) {
+        }
 
-            }
+        navBar.setOnReselectListener {
 
-        })
+        }
 
-        navBar.setOnReselectListener(object :chetanBottomNavigation.ReselectListener {
-            override fun onReselectItem(item: chetanBottomNavigation.Model?) {
-
-            }
-
-        })
-
-    navBar.show(2,true)
+        navBar.show(2,true)
 
     }
 
