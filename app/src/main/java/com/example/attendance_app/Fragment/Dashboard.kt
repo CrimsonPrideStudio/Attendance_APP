@@ -23,7 +23,7 @@ import com.example.attendance_app.DataClass.SemesterClasses
 import com.example.attendance_app.DataClass.StudentAttendance
 import com.example.attendance_app.DataClass.TeacherData
 import com.example.attendance_app.R
-import com.example.attendance_app.databinding.HomeCardViewBinding
+
 import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -72,17 +72,20 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
         val yearHome=binding.findViewById<Spinner>(R.id.yearHome)
         val streanHome=binding.findViewById<Spinner>(R.id.streamHome)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-       // checkPermission()
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        checkPermission()
         recyclerView =binding.findViewById(R.id.recycleViewHome)
         layoutManager = LinearLayoutManager(activity)
         classesList = arrayListOf()
+
         recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = HomeClassAdaptar(requireContext(), arrayListOf())
         addClassFlaotingBtn =binding.findViewById(R.id.addClassFloatingButton)
+
         val contactPopupView:View = layoutInflater.inflate(R.layout.form, null)
         initializeForm(contactPopupView)
 
-
+        Toast.makeText(requireContext(),"ren",Toast.LENGTH_SHORT).show()
         addClassFlaotingBtn.setOnClickListener {
             dialogBuilder = AlertDialog.Builder(requireContext(),R.style.customAlert)
             initializeForm(contactPopupView)
@@ -91,7 +94,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
             dialog.show()
 
         }
-        //getAllClasses()
+        getAllClasses()
         createButtonForm.setOnClickListener {
             addClassData()
         }
@@ -126,7 +129,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
         totalStudentForm = context.findViewById(R.id.totalStudentsInput)
         createButtonForm = context.findViewById(R.id.createBtn)
         cancelButtonForm = context.findViewById(R.id.cancelBtn)
-       // initializeSpinners()
+        initializeSpinners()
     }
 
     private fun getAllClasses() {

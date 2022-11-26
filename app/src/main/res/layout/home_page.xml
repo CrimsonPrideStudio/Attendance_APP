@@ -6,6 +6,7 @@
     android:background="@color/black"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.Dashboard"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/linearLayout"
-            android:layout_marginTop="26dp" />
+            tools:listitem="@layout/home_card_view"
+            android:layout_marginTop="0dp" />
     </RelativeLayout>
 </LinearLayout>
