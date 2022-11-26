@@ -74,21 +74,23 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         checkPermission()
+
+        //region RecyclerView
         recyclerView =binding.findViewById(R.id.recycleViewHome)
         layoutManager = LinearLayoutManager(activity)
         classesList = arrayListOf()
-
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = HomeClassAdaptar(requireContext(), arrayListOf())
+        //endregion
+        
         addClassFlaotingBtn =binding.findViewById(R.id.addClassFloatingButton)
 
         val contactPopupView:View = layoutInflater.inflate(R.layout.form, null)
         initializeForm(contactPopupView)
 
-        dialogBuilder = AlertDialog.Builder(requireContext(),R.style.customAlert)
-        initializeForm(contactPopupView)
-        dialogBuilder.setView(contactPopupView)
-        dialog = dialogBuilder.create()
+
+
+        //region Add Button Dialog
         addClassFlaotingBtn.setOnClickListener {
             dialog.show()
         }
@@ -99,6 +101,9 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
         cancelButtonForm.setOnClickListener {
             dialog.hide()
         }
+        //endregion
+
+
         return binding
     }
 
@@ -130,6 +135,9 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
         totalStudentForm = context.findViewById(R.id.totalStudentsInput)
         createButtonForm = context.findViewById(R.id.createBtn)
         cancelButtonForm = context.findViewById(R.id.cancelBtn)
+        dialogBuilder = AlertDialog.Builder(requireContext(),R.style.customAlert)
+        dialogBuilder.setView(context)
+        dialog = dialogBuilder.create()
         initializeSpinners()
     }
 
