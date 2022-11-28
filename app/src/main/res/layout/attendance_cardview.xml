@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="11dp"
+    app:cardElevation="11dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="20dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/gray"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/text_linear_view"
+        android:layout_width="200dp"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/studentName"
+            android:layout_height="wrap_content"
+            android:text="Student Name"
+            android:textAlignment="center"
+            android:textColor="@color/Radical_Red"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/studentRollnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Roll Number"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Radical_Red"
+            android:background="@drawable/delete"
+            />
+
+
+    </LinearLayout>
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

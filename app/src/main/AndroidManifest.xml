@@ -17,7 +17,14 @@
         android:theme="@style/Theme.Attendance_APP"
         tools:targetApi="31">
         <activity
-            android:name=".Fragment.Test"
+            android:name=".LoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AttendanceActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
             <intent-filter>
@@ -29,8 +36,6 @@
         <activity
             android:name=".Signup"
             android:exported="false">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
