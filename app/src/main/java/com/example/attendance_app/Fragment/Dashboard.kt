@@ -65,6 +65,11 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
     lateinit var cancelButtonForm: Button
     lateinit var binding: View
     var i = 0;
+
+    var currentYear = "4"
+    var currentClass = "Python"
+    var currentStream = "CSE"
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,6 +84,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
 
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
             checkPermission()
+            getCurrentLocation()
 
             //region RecyclerView
             recyclerView = binding.findViewById(R.id.recycleViewHome)
@@ -156,7 +162,19 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
                             classesList.add(user)
                         }
                     }
-                    recyclerView.adapter = HomeClassAdaptar(binding.context, classesList)
+                    val adaptar = HomeClassAdaptar(binding.context, classesList)
+                    recyclerView.adapter = adaptar
+                    adaptar.setOnItemClickListener(object : HomeClassAdaptar.onItemClickListener{
+                        @RequiresApi(Build.VERSION_CODES.O)
+                        override fun onItemClick(position: Int) {
+                            val data = classesList[position]
+                            currentYear = data.collegeYear.toString()
+                            currentClass = data.subject.toString()
+                            currentStream = data.stream.toString()
+                            sendTeacherData()
+                        }
+
+                    })
                 }
             }
 
@@ -200,22 +218,9 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun sendTeacherData() {
-        val teacherData: TeacherData = TeacherData()
-        teacherData.isOpen = true;
-        teacherData.collegeYear = 4;
-        teacherData.stream = "CSE";
-        teacherData.subject = "QSA";
-        teacherData.time = getCurrentTime();
-        teacherData.location = currLocation;
-        val ref = FirebaseDatabase.getInstance()
-            .getReference(teacherData.collegeYear.toString() + " " + teacherData.stream)
-        val refOfPortal = FirebaseDatabase.getInstance()
-            .getReference(teacherData.collegeYear.toString() + " " + teacherData.stream + " Portal")
-        val classId = ref.push().key
-        refOfPortal.child(teacherData.subject).setValue(true)
-        ref.child(teacherData.subject).setValue(teacherData).addOnCompleteListener {
-            // Toast.makeText(this,"ADDED SUCCESSFULLY",Toast.LENGTH_LONG).show()
-        }
+        val ref = FirebaseDatabase.getInstance().getReference("Portal/${currentYear}/${currentStream}").child(
+            currentClass
+        ).setValue(currLocation)
 
     }
 
@@ -288,7 +293,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
                     if (it != null) {
                         currLocation =
                             it.result.latitude.toString() + ":" + it.result.longitude.toString()
-                        sendTeacherData()
+
                         //Toast.makeText(this@MainActivity, contactDbList[0].personNumber.toString()+""+location.latitude.toString() + "  " + location.longitude.toString() , Toast.LENGTH_SHORT).show()
                     } else {
                         locationRequest =
