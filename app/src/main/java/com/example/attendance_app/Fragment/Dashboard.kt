@@ -64,46 +64,49 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
     lateinit var createButtonForm: Button
     lateinit var cancelButtonForm: Button
     lateinit var binding: View
+    var i = 0;
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         binding = inflater.inflate(R.layout.home_page, container, false)
-        val yearHome=binding.findViewById<Spinner>(R.id.yearHome)
-        val streanHome=binding.findViewById<Spinner>(R.id.streamHome)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-        checkPermission()
+        if (i==0) {
 
-        //region RecyclerView
-        recyclerView =binding.findViewById(R.id.recycleViewHome)
-        layoutManager = LinearLayoutManager(activity)
-        classesList = arrayListOf()
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = HomeClassAdaptar(requireContext(), arrayListOf())
-        //endregion
-        
-        addClassFlaotingBtn =binding.findViewById(R.id.addClassFloatingButton)
+            i++
+            binding = inflater.inflate(R.layout.home_page, container, false)
+            val yearHome = binding.findViewById<Spinner>(R.id.yearHome)
+            val streanHome = binding.findViewById<Spinner>(R.id.streamHome)
 
-        val contactPopupView:View = layoutInflater.inflate(R.layout.form, null)
-        initializeForm(contactPopupView)
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+            checkPermission()
 
+            //region RecyclerView
+            recyclerView = binding.findViewById(R.id.recycleViewHome)
+            layoutManager = LinearLayoutManager(activity)
+            classesList = arrayListOf()
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = HomeClassAdaptar(requireContext(), arrayListOf())
+            //endregion
 
+            addClassFlaotingBtn = binding.findViewById(R.id.addClassFloatingButton)
 
-        //region Add Button Dialog
-        addClassFlaotingBtn.setOnClickListener {
-            dialog.show()
+            val contactPopupView: View = layoutInflater.inflate(R.layout.form, null)
+            initializeForm(contactPopupView)
+
+            //region Add Button Dialog
+            addClassFlaotingBtn.setOnClickListener {
+                dialog.show()
+            }
+            getAllClasses()
+            createButtonForm.setOnClickListener {
+                addClassData()
+            }
+            cancelButtonForm.setOnClickListener {
+                dialog.hide()
+            }
+            //endregion
+
         }
-        getAllClasses()
-        createButtonForm.setOnClickListener {
-            addClassData()
-        }
-        cancelButtonForm.setOnClickListener {
-            dialog.hide()
-        }
-        //endregion
-
-
         return binding
     }
 
