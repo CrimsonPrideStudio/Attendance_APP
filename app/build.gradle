@@ -62,4 +62,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     implementation 'com.github.chetankoli1.BottomNavigation:chetanbottomnavigation:0.0.3'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

@@ -23,13 +23,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".AttendanceActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login">
-
-        </activity>
-        <activity android:name=".Fragment.Test"
+        <activity android:name=".AttendanceActivity"
             android:exported="true"
             android:label="App"
             >
