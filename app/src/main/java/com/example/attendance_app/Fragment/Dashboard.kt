@@ -2,6 +2,7 @@ package com.example.attendance_app.Fragment
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.attendance_app.Adaptar.HomeClassAdaptar
+import com.example.attendance_app.AttendanceActivity
 import com.example.attendance_app.DataClass.AddClassButton
 import com.example.attendance_app.DataClass.SemesterClasses
 import com.example.attendance_app.DataClass.StudentAttendance
@@ -66,9 +68,11 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
     lateinit var binding: View
     var i = 0;
 
-    var currentYear = "4"
-    var currentClass = "Python"
-    var currentStream = "CSE"
+    companion object {
+        var currentYear = "4"
+        var currentClass = "Python"
+        var currentStream = "CSE"
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -172,6 +176,8 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
                             currentClass = data.subject.toString()
                             currentStream = data.stream.toString()
                             sendTeacherData()
+                            val intent  = Intent(binding.context,AttendanceActivity::class.java)
+                            startActivity(intent)
                         }
 
                     })

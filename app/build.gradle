@@ -63,4 +63,5 @@ dependencies {
 
     implementation 'com.github.chetankoli1.BottomNavigation:chetanbottomnavigation:0.0.3'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

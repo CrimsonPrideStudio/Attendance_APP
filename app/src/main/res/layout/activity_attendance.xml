@@ -81,11 +81,11 @@
 
         <ImageButton
             android:id="@+id/sortBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:background="@drawable/sort_icon"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white" />
 
         <Space
             android:layout_width="0dp"
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/startEnd"
+        android:id="@+id/startEndBtn"
         android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:text="Start/End"
