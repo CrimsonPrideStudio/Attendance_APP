@@ -177,7 +177,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
                             currentStream = data.stream.toString()
                             sendTeacherData()
                             val intent  = Intent(binding.context,AttendanceActivity::class.java)
-                            startActivity(intent)
+                           if(currLocation!=null)  startActivity(intent)
                         }
 
                     })
