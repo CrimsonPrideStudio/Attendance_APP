@@ -154,9 +154,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:focusable="false"
                 android:gravity="center"
-                android:visibility="gone"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:weightSum="13">
 
                 <Space
@@ -171,6 +172,8 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rectangularborder"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:selectAllOnFocus="true" />
@@ -186,6 +189,8 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rectangularborder"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:selectAllOnFocus="true" />
@@ -201,6 +206,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rectangularborder"
+                    android:focusable="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:selectAllOnFocus="true" />
@@ -216,6 +222,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rectangularborder"
+                    android:focusable="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:selectAllOnFocus="true" />
@@ -231,6 +238,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rectangularborder"
+                    android:focusable="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:selectAllOnFocus="true" />
@@ -247,6 +255,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rectangularborder"
+                    android:focusable="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:selectAllOnFocus="true" />
