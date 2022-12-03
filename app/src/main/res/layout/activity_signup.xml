@@ -157,7 +157,7 @@
                 android:focusable="false"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:weightSum="13">
 
                 <Space
