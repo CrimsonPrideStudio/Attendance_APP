@@ -38,7 +38,7 @@ import java.time.format.DateTimeFormatter
 
 
 class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
-    private lateinit var currLocation: String;
+
     private lateinit var locationCallback: LocationCallback
     lateinit var fusedLocationClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
@@ -69,9 +69,10 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
     var i = 0;
 
     companion object {
-        var currentYear = "4"
-        var currentClass = "Python"
-        var currentStream = "CSE"
+        var currentYear = ""
+        var currentClass = ""
+        var currentStream = ""
+        lateinit var currLocation: String
     }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -110,6 +111,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
             getAllClasses()
             createButtonForm.setOnClickListener {
                 addClassData()
+                dialog.hide()
             }
             cancelButtonForm.setOnClickListener {
                 dialog.hide()
@@ -175,8 +177,9 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
                             currentYear = data.collegeYear.toString()
                             currentClass = data.subject.toString()
                             currentStream = data.stream.toString()
-                            sendTeacherData()
+
                             val intent  = Intent(binding.context,AttendanceActivity::class.java)
+                            intent.putExtra("ClassName", "$currentClass, $currentYear")
                            if(currLocation!=null)  startActivity(intent)
                         }
 
@@ -222,13 +225,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun sendTeacherData() {
-        val ref = FirebaseDatabase.getInstance().getReference("Portal/${currentYear}/${currentStream}").child(
-            currentClass
-        ).setValue(currLocation)
 
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentTime(): String {
@@ -332,7 +329,7 @@ class Dashboard : Fragment(),AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        Toast.makeText(requireContext(), "AS", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

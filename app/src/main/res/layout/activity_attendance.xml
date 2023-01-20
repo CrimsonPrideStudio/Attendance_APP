@@ -44,19 +44,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Class Title, "
+                    android:text="Class Title, 4"
                     android:textColor="@color/Radical_Red"
                     android:textSize="30dp" />
 
-                <TextView
-                    android:id="@+id/semester"
-                    android:layout_width="match_parent"
 
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="4"
-                    android:textColor="@color/Radical_Red"
-                    android:textSize="30dp" />
 
             </LinearLayout>
 
@@ -118,7 +110,7 @@
         android:layout_alignParentEnd="true"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-
+        android:orientation="horizontal"
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content">
 
@@ -126,9 +118,18 @@
         android:id="@+id/startEndBtn"
         android:layout_width="176dp"
         android:layout_height="wrap_content"
-        android:text="Start/End"
+        android:text="@string/start"
         android:backgroundTint="@color/Radical_Red"
         android:textColor="@color/white" />
+
+        <Button
+            android:layout_marginLeft="10dp"
+            android:id="@+id/pdfDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PDF"
+            android:backgroundTint="@color/Radical_Red"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
