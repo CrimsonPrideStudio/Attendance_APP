@@ -9,12 +9,13 @@ import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class Test : AppCompatActivity() {
+    val fragments = listOf(Profile(), Dashboard(), Setting())
 
     lateinit var navBar: chetanBottomNavigation
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val fragments = listOf(Profile(), Dashboard(), Setting())
+
 
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
         viewPager.adapter = ViewPagerAdapter(this, fragments)
@@ -46,9 +47,20 @@ class Test : AppCompatActivity() {
         navBar.show(2,true)
 
     }
+    //private fun changeFragment(fragment: Fragment){
+    //    val fragManager=supportFragmentManager
+    //    val fragTransaction=fragManager.beginTransaction()
+    //    fragTransaction.replace(R.id.fragContainer,fragment)
+    //    fragTransaction.commit()
+    //}
 
     private fun changeFragment(position: Int) {
+        val fragManager=supportFragmentManager
+        val fragTransaction=fragManager.beginTransaction()
+        fragTransaction.replace(R.id.fragContainer,fragments[position])
+        fragTransaction.commit()
         viewPager.currentItem = position
+
     }
 
 }
