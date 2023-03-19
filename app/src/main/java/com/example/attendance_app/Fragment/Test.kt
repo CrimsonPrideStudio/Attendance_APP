@@ -2,10 +2,11 @@ package com.example.attendance_app.Fragment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.example.attendance_app.Adaptar.ViewPagerAdapter
 import com.example.attendance_app.R
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation
+import kotlinx.android.synthetic.main.activity_main.*
 
 class Test : AppCompatActivity() {
 
@@ -13,6 +14,10 @@ class Test : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val fragments = listOf(Profile(), Dashboard(), Setting())
+
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        viewPager.adapter = ViewPagerAdapter(this, fragments)
 
         navBar=findViewById(R.id.navBar)
 
@@ -24,9 +29,9 @@ class Test : AppCompatActivity() {
 
         navBar.setOnShowListener { item ->
             when (item?.id) {
-                1 -> changeFragment(Profile())
-                2 -> changeFragment(Dashboard())
-                3 -> changeFragment(Setting())
+                1 -> changeFragment(0)
+                2 -> changeFragment(1)
+                3 -> changeFragment(2)
             }
         }
 
@@ -42,11 +47,9 @@ class Test : AppCompatActivity() {
 
     }
 
-    private fun changeFragment(fragment: Fragment){
-        val fragManager=supportFragmentManager
-        val fragTransaction=fragManager.beginTransaction()
-        fragTransaction.replace(R.id.fragContainer,fragment)
-        fragTransaction.commit()
+    private fun changeFragment(position: Int) {
+        viewPager.currentItem = position
     }
+
 }
 
